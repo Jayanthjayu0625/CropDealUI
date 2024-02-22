@@ -1,0 +1,7 @@
+body {
+    background-image: url("../../../assets/images/admin.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* This ensures the background covers the entire viewport height */
+  }

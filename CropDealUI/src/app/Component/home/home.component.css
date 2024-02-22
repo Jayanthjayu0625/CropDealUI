@@ -1,0 +1,84 @@
+/* Navigation bar styles */
+.navbar {
+  background-color: #499b9b; /* Set background color */
+  border-bottom: 1px solid #927373; /* Add a border at the bottom */
+}
+
+.navbar-brand {
+  font-size: 24px; /* Adjust the font size of the brand */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Set the text color */
+}
+
+.navbar-toggler-icon {
+  background-color: #906969; /* Change the color of the toggle icon */
+}
+
+.nav-item {
+  margin: 0 10px; /* Add spacing between navigation items */
+}
+
+.nav-link {
+  color: #333; /* Set the link text color */
+}
+
+.nav-link.active {
+  font-weight: bold; /* Highlight the active link with bold text */
+}
+
+.dropdown-menu {
+  background-color: #90a2b5; /* Set background color for the dropdown */
+  border: 1px solid #ccc; /* Add a border to the dropdown */
+}
+
+.dropdown-item {
+  color: #333; /* Set the dropdown item text color */
+}
+
+
+/* Additional styles can be added as needed */
+.navbar-flex {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(255, 253, 253);
+}
+
+
+.logo-container > img {
+  width: 100px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: 350px 350px 350px;
+  row-gap: 100px;
+  margin-top: 150px;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom:40px;
+}
+body {
+  background-image: url("../../../assets/images/crop3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* This ensures the background covers the entire viewport height */
+}
+.container-fluid{
+  background:linear-gradient(rgb(159, 164, 168),rgb(197, 200, 201));
+}
+.navbar navbar-expand-lg bg-body-tertiary{
+  margin-top: 100px;
+}

@@ -1,0 +1,68 @@
+
+
+<body>
+
+       <div class="form-container">
+        <h2>Edit Crop</h2>
+        <form (ngSubmit)="onSubmit(user)" #registrationForm="ngForm">
+            <div class="form-group">
+                <label for="name">Crop ID:</label>
+                <input type="number" class="form-control" id="name" name="CropId" required [(ngModel)]="user.cropId" placeholder="Enter the same Crop ID" required>
+                <div class="text-danger" *ngIf="registrationForm.controls['CropId'].invalid && registrationForm.controls['CropId'].touched">
+                    <div *ngIf="registrationForm.controls['CropId'].hasError('required')">Crop ID is required.</div>
+                </div>
+            </div>
+            <br>
+    
+            <div class="form-group">
+                <label for="name">Crop Name:</label>
+                <input type="text" class="form-control" id="name" name="CropName" required [(ngModel)]="user.cropName" placeholder="Enter Crop Name" required>
+                <div class="text-danger" *ngIf="registrationForm.controls['CropName'].invalid && registrationForm.controls['CropName'].touched">
+                    <div *ngIf="registrationForm.controls['CropName'].hasError('required')">Crop Name is required.</div>
+                </div>
+            </div>
+            <br>
+    
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" class="form-control" id="quantity" name="Quantity" required [(ngModel)]="user.quantity" placeholder="Enter Quantity in Kg" required>
+                <div class="text-danger" *ngIf="registrationForm.controls['Quantity'].invalid && registrationForm.controls['Quantity'].touched">
+                    <div *ngIf="registrationForm.controls['Quantity'].hasError('required')">Quantity is required.</div>
+                </div>
+            </div>
+            <br>
+    
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control" id="price" name="Price" required [(ngModel)]="user.price" placeholder="Enter Price per Kg" required>
+                <div class="text-danger" *ngIf="registrationForm.controls['Price'].invalid && registrationForm.controls['Price'].touched">
+                    <div *ngIf="registrationForm.controls['Price'].hasError('required')">Price is required.</div>
+                </div>
+            </div>
+            <br>
+    
+            <div class="form-group">
+                <label for="address">Location:</label>
+                <input type="text" class="form-control" id="address" name="Location" required [(ngModel)]="user.location" placeholder="Enter Location" required>
+                <div class="text-danger" *ngIf="registrationForm.controls['Location'].invalid && registrationForm.controls['Location'].touched">
+                    <div *ngIf="registrationForm.controls['Location'].hasError('required')">Location is required.</div>
+                </div>
+            </div>
+            <br>
+    
+            <div class="form-group">
+                <label for="CropTypeId">Crop Type:</label>
+                <select class="form-control" id="CropTypeId" name="CropTypeId" required [(ngModel)]="user.cropTypeID">
+                    <option value="1">Fruits</option>
+                    <option value="2">Vegetables</option>
+                </select>
+                <div class="text-danger" *ngIf="registrationForm.controls['CropTypeId'].invalid && registrationForm.controls['CropTypeId'].touched">
+                    <div *ngIf="registrationForm.controls['CropTypeId'].hasError('required')">Crop Type is required.</div>
+                </div>
+            </div>
+            <br>
+    
+            <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Submit</button>
+        </form>
+    </div>
+</body>

@@ -1,0 +1,211 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+    <body>
+      <div class="container">
+        <div class="dashboard-container">
+          <div class="dropdown">
+            <button class="dropbtn">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </button>
+            <div class="dropdown-content">
+              <button (click)="showSection('home')">Home</button>
+              <button (click)="showSection('crops')">Crops</button>
+              <button (click)="showSection('farmers')">Farmers</button>
+              <button (click)="showSection('dealers')">Dealers</button>
+              <button (click)="showSection('invoices')">Invoices</button>
+            </div>
+          </div>
+          <h2>Admin Dashboard</h2>
+          <div class="dashboard-buttons">
+              
+              <div class="right-buttons">
+                  <button class="btn btn-danger" (click)="logout()">Logout</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="container">
+    <div *ngIf="activeSection === 'crops'" class="mt-4">
+        <h3>Crops</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+              
+
+                <tr>
+                    <th scope="col">Crop Id</th>
+                    <th scope="col">Crop Type</th>
+                    <th scope="col">Crop Name</th>
+                    <th scope="col">Quantity In Kg</th>
+                    <th scope="col">Price Per Kg</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Farmer Name</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let crop of crops">
+                    <td>{{ crop.cropId }}</td>
+                    <!-- Adjust the following based on your logic for crop type -->
+                    <td>{{ crop.cropType }}</td>
+                    <td>{{ crop.cropName }}</td>
+                    <td>{{ crop.quantity }}</td>
+                    <td>{{ crop.price }}</td>
+                    <td>{{ crop.location }}</td>
+                    <td>{{ crop.farmerName }}</td>
+                    <td><button class="btn btn-danger" (click)="deleteCrop(crop.cropId)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div *ngIf="activeSection === 'farmers'" class="container mt-4">
+      <h3>Farmers</h3>
+      <div class="table-responsive">
+          <table class="table table-bordered">
+              <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Sr.No</th>
+                      <th scope="col">Farmer Id</th>
+                      <th scope="col">Farmer Name</th>
+                      <th scope="col">Farmer Email</th>
+                      <th scope="col">Mobile Number</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Change Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let farmer of farmers; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ farmer.farmerId }}</td>
+                      <td>{{ farmer.name }}</td>
+                      <td>{{ farmer.email }}</td>
+                      <td>{{ farmer.phone }}</td>
+                      <td>{{ farmer.address }}</td>
+                      <td>{{ farmer.active ? 'Active' : 'Inactive' }}</td>
+                      <td>
+                          <button class="btn btn-outline-primary btn-sm" (click)="updateFarmerStatus(farmer.farmerId)">Active/Inactive</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  
+
+  <div *ngIf="activeSection === 'dealers'" class="container mt-4">
+    <h3>Dealers</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Sr.No</th>
+                    <th scope="col">Dealer Id</th>
+                    <th scope="col">Dealer Name</th>
+                    <th scope="col">Dealer Email</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Change Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dealer of dealers; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ dealer.dealerId }}</td>
+                    <td>{{ dealer.name }}</td>
+                    <td>{{ dealer.email }}</td>
+                    <td>{{ dealer.phone }}</td>
+                    <td>{{ dealer.address }}</td>
+                    <td>{{ dealer.active ? 'Active' : 'Inactive' }}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" (click)="updateDealerStatus(dealer.dealerId)">Active/Inactive</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="activeSection === 'invoices'" class="container mt-4">
+  <h3>Invoices</h3>
+  <div class="table-responsive">
+      <table class="table table-striped">
+          <thead class="thead-dark">
+              <tr>
+                  <th scope="col">Sr.No</th>
+                  <th scope="col">Invoice Id</th>
+                  <th scope="col">Farmer Name</th>
+                  <th scope="col">Dealer Name</th>
+                  <th scope="col">Crop Name</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Download Invoices</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let invoice of invoices; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ invoice.invoiceId }}</td>
+                  <td>{{ invoice.farmerName }}</td>
+                  <td>{{ invoice.dealerName }}</td>
+                  <td>{{ invoice.cropName }}</td>
+                  <td>{{ invoice.amount }}</td>
+                  <td>{{ invoice.date | date:'dd-MM-yyyy' }}</td>
+                  <td>
+                      <button class="btn btn-outline-primary btn-sm" (click)="downloadPdf(invoice.invoiceId)">Download PDF</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+<div *ngIf="activeSection === 'home'" class="container mt-4">
+  <h3>Welcome Admin</h3>
+
+  <div class="icons-container">
+    <div class="icons">
+      <div class="card" style="width: 20rem;">
+        <img src="../../../assets/images/admin1.jpg" class="card-img-top" alt="Crops" style="height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: large; font-weight: bold;">Crops</h5>
+          <p class="card-text">You're logged in as an admin. Manage crops, farmers, dealers, and invoices</p>
+        </div>
+      </div>
+
+      <div class="card" style="width: 20rem;">
+        <img src="../../../assets/images/admin2.jpeg" class="card-img-top" alt="Invoices" style="height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: large; font-weight: bold;">Invoices</h5>
+          <p class="card-text">View and manage crop purchase invoices with ease.</p>
+        </div>
+      </div>
+
+      <div class="card" style="width: 20rem;">
+        <img src="../../../assets/images/admin3.jpeg" class="card-img-top" alt="Subscriptions" style="height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: large; font-weight: bold;">Features</h5>
+          <p class="card-text">View statistical information about  farmer and dealer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Include your custom JavaScript as needed -->
+
+
+

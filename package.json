@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "-": "^0.0.1",
+    "@angular/cli": "^16.2.9",
+    "bootstrap": "^5.3.2",
+    "g": "^2.0.1",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1"
+  }
+}

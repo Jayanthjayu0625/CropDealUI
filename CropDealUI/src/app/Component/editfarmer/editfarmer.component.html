@@ -1,0 +1,82 @@
+<!-- <div class="form-container">
+    <h2>Edit Farmer</h2>
+    <form (ngSubmit)="onSubmit(user)" #registrationForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="user.Name" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" [(ngModel)]="user.Phone" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="user.Email" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="user.Password" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="address" name="address" [(ngModel)]="user.Address" required>
+      </div>
+    
+      <button type="submit" [disabled]="!registrationForm.valid">Submit</button>
+    </form>
+    <button (click)="back()" class="back-button">Back</button>
+    
+    </div> -->
+
+    <div class="container form-container">
+      <h2>Edit Farmer</h2>
+      <form (ngSubmit)="onSubmit(user)" #registrationForm="ngForm">
+          <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" [(ngModel)]="user.name" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="phone">Phone Number:</label>
+              <input type="tel" id="phone" name="phone" [(ngModel)]="user.phone" class="form-control" required pattern="[0-9]{10}">
+          </div>
+  
+          <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" [(ngModel)]="user.email" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" [(ngModel)]="user.password" class="form-control" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="location">Location:</label>
+              <input type="text" id="address" name="address" [(ngModel)]="user.address" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="accNum">Account Number:</label>
+            <input type="text" id="accNum" name="accNum" [(ngModel)]="user.accNum" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="ifsc">IFSC Code :</label>
+          <input type="text" id="ifsc" name="ifsc" [(ngModel)]="user.ifsc" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="bankName">BankName:</label>
+        <input type="text" id="bankName" name="bankName" [(ngModel)]="user.bankName" class="form-control" required>
+    </div>
+  
+          <button type="submit" [disabled]="!registrationForm.valid" class="btn btn-primary">Submit</button>
+      </form>
+      <button (click)="back()" class="btn btn-secondary back-button">Back</button>
+  </div>
+  

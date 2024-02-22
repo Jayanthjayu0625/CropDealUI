@@ -1,0 +1,17 @@
+
+
+<body>
+ <h2>Add Subscription</h2>
+<form (ngSubmit)="OnSubmit(user)" #registrationForm="ngForm" class="subscription-form">
+    <label>Crop Type:</label><br>
+    <div class="radio-group">
+        <input type="radio" id="cropTypeId1" name="cropTypeId" [(ngModel)]="user.cropTypeId" value="1" required>
+        <label for="cropTypeId1">Fruit</label>
+    </div>
+    <div class="radio-group">
+        <input type="radio" id="cropTypeId2" name="cropTypeId" [(ngModel)]="user.cropTypeId" value="2" required>
+        <label for="cropTypeId2">Vegetable</label>
+    </div>
+    <button type="submit" [disabled]="!registrationForm.valid" class="submit-button">Submit</button>
+</form>
+</body>

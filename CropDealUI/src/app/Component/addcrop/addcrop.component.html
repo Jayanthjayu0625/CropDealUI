@@ -1,0 +1,60 @@
+<body>
+<div class="form-group">
+</div>
+<form #cropForm="ngForm" (ngSubmit)="addCrop()">
+  <div class="form-group">
+      <label for="cropName">Crop Name:</label>
+      <input type="text" id="cropName" class="form-control" [(ngModel)]="data.cropName" name="cropName"
+      required minlength="3" maxlength="50" />
+      <div *ngIf="cropForm.controls['cropName'].invalid && (cropForm.controls['cropName'].dirty || cropForm.controls['cropName'].touched)"class="error-message">
+      <div *ngIf="cropForm.controls['cropName']errors['required']">Crop Name is required.</div>
+      
+  </div>
+    
+    
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" class="form-control" [(ngModel)]="data.quantity" name="quantity" required min="0" />
+        <div *ngIf="cropForm.controls['quantity'].invalid && (cropForm.controls['quantity'].dirty || cropForm.controls['quantity'].touched)"class="error-message">
+          <div *ngIf="cropForm.controls['quantity']errors['required']">Quantity is required.</div>
+          <div *ngIf="cropForm.controls['quantity']errors['min']">Quantity must be a non-negative number.</div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" class="form-control" [(ngModel)]="data.price" name="price" required min="0.01" max="10000" />
+        <div *ngIf="cropForm.controls['price'].invalid && (cropForm.controls['price'].dirty || cropForm.controls['price'].touched)"class="error-message">
+          <div *ngIf="cropForm.controls['price']errors['required']">Price is required.</div>
+          <div *ngIf="cropForm.controls['price']errors['min']">Price must be greater than 0.01.</div>
+        </div>
+      </div>
+      
+    
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" class="form-control" [(ngModel)]="data.location" name="location" required />
+        <div *ngIf="cropForm.controls['location'].invalid && (cropForm.controls['location'].dirty || cropForm.controls['location'].touched)"class="error-message">
+          <div *ngIf="cropForm.controls['location']errors['required']">Location is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="cropTypeID">Crop Type:</label>
+          <select id="cropTypeID" class="form-control" [(ngModel)]="data.cropTypeID" name="cropTypeID" required>
+            <!-- Add your <option> elements here for different crop types -->
+            <option value="1">FRUITS</option>
+            <option value="2">VEGETABLES</option>
+            <!-- Add more options as needed -->
+          </select>
+          <div *ngIf="cropForm.controls['cropTypeID'].invalid && (cropForm.controls['cropTypeID'].dirty || cropForm.controls['cropTypeID'].touched)"class="error-message">
+            <div *ngIf="cropForm.controls['cropTypeID']errors['required']">Crop Type is required.</div>
+          </div>
+      </div>
+        
+    
+      
+    
+      <button type="submit" class="btn btn-primary" [disabled]="cropForm.invalid">Submit</button>
+    
+    
+

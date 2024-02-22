@@ -1,0 +1,52 @@
+.subscription-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.radio-group {
+    margin: 10px 0;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #e74c3c;
+}
+
+.submit-button {
+    margin-top: 20px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+body {
+    background-image: url("../../../assets/images/sub1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* This ensures the background covers the entire viewport height */
+  }

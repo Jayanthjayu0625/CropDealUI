@@ -1,0 +1,214 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealer Dashboard</title>
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css"> -->
+</head>
+<body>
+    
+    
+      <div class="container">
+  <div class="dashboard-container">
+    <div class="dropdown">
+      <button class="dropbtn">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
+      <div class="dropdown-content">
+        <button (click)="showSection('home')">Home</button>
+        <button (click)="showSection('crops')">Crops</button>
+        <button (click)="showSection('invoices')">Invoices</button>
+        <button (click)="showSection('profile')">Profile</button>
+        <button (click)="showSection('subscriptions')">Subscription</button>
+      </div>
+    </div>
+  
+
+
+      
+          <h2>Dealer Dashboard</h2>
+          <div class="dashboard-buttons">
+              
+              <div class="right-buttons">
+                  <button class="btn btn-danger" (click)="logout()">Logout</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <div class="container">
+        <div *ngIf="activeSection === 'invoices'">
+            <h3>Invoices</h3>
+            <div class="table-success">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                    <tr>
+                        
+                        <th>Invoice ID</th>
+                        <th>Farmer Name</th>
+                        <th>Dealer Name</th>
+                        <th>Crop Name</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Download Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invoice of invoices">
+                        
+                        <td>{{ invoice.invoiceId }}</td>
+                        <td>{{ invoice.farmerName }}</td>
+                        <td>{{ invoice.dealerName }}</td>
+                        <td>{{ invoice.cropName }}</td>
+                        <td>{{ invoice.amount}}</td>
+                        <td>{{ invoice.date| date:'dd-MM-yyyy' }}</td>
+                        <td>
+                          <button class="btn btn-primary" (click)="downloadPdf(invoice.invoiceId)">Download PDF</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        </div>
+
+        <div *ngIf="activeSection === 'crops'">
+            <h3>Crops</h3>
+            <div class="table-hover">
+              <table class="table table-hover">
+                  <thead class="thead-dark">
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Crop ID</th>
+                        <th>Crop Type </th>
+                        <th>Crop Name</th>
+                        <th>Quantity In Kg</th>
+                        <th>Price Per Kg</th>
+                        <th>Location</th>
+                        <th>Farmer Name</th>
+                        <th>Buy Crop</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let crop of crops; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ crop.cropId }}</td>
+                        <!-- <td>{{ crop.cropTypeID === 1 ? 'Fruit' : crop.cropTypeID === 2 ? 'Vegetable' : 'Unknown' }}</td> -->
+                         <td>{{ crop.cropType }}</td>
+                        <td>{{ crop.cropName }}</td>
+                        <td>{{ crop.quantity }}</td>
+                        <td>{{ crop.price }}</td>
+                        <td>{{ crop.location }}</td>
+                        <td>{{ crop.farmerName }}</td>
+                        <td class="btn btn-primary">
+                          <button class="btn btn-primary" (click)="openQuantityDialog(crop.cropId, crop.farmerName)" [disabled]="!isQuantityValid(crop)">Buy Crop</button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div *ngIf="activeSection === 'subscriptions'">
+          <h3>Subscription</h3>
+          <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                  <tr>
+                    
+                      <th>Subscription ID</th>
+                      <th>Crop Type</th>
+                      <th>Unsubscribe</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let user of subscriptions">
+                      
+                      <td>{{user.subscriptionId}}</td>
+                      <td>{{ user.cropTypeID === 1 ? 'Fruit' : user.cropTypeID === 2 ? 'Vegetable' : 'Unknown' }}</td>
+                    <td>
+                      <button class="btn btn-danger "(click)="deleteSubscription(user.subscriptionId)">UnSubscribe</button>
+                  </td> 
+                    </tr>
+                    
+              </tbody>
+          </table>
+          <div class="centered-button">
+            <button class="btn btn-primary" (click)="addSubscription()">Subscribe</button>
+          </div> 
+      </div>
+        </div>
+
+        <div *ngIf="activeSection === 'profile'">
+            <h3>Dealer Profile</h3>
+            
+            <div class="table-bordered">
+            <table class="table table-success">
+                <thead class="thead-dark">
+            
+          
+                <tr>
+                    <td>ID</td>
+                    <td>{{ dealer.dealerId }}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ dealer.name }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ dealer.email }}</td>
+                </tr>
+                <tr>
+                    <td>Contact Number</td>
+                    <td>{{ dealer.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>{{ dealer.address }}</td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <button class="btn btn-primary" (click)="editDealerDetails()">Edit Profile</button>
+    </div>
+    <div *ngIf="activeSection === 'home'" class="container mt-4">
+      <h3>Welcome Dealer</h3>
+    
+      <div class="icons-container">
+        <div class="icons">
+          <div class="card" style="width: 20rem;">
+            <img src="../../../assets/images/dealer6.jpeg" class="card-img-top" alt="Crops" style="height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: large; font-weight: bold;">Crops</h5>
+              <p class="card-text">Manage and oversee dealer information and status changes</p>
+            </div>
+          </div>
+    
+          <div class="card" style="width: 20rem;">
+            <img src="../../../assets/images/dealer4.webp" class="card-img-top" alt="Invoices" style="height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: large; font-weight: bold;">Invoices</h5>
+              <p class="card-text">View and buy crop with invoices with ease.</p>
+            </div>
+          </div>
+    
+          <div class="card" style="width: 20rem;">
+            <img src="../../../assets/images/dealer5.webp" class="card-img-top" alt="Subscriptions" style="height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: large; font-weight: bold;">Features</h5>
+              <p class="card-text">View statistical information about dealer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+<!-- </body>
+</html> -->

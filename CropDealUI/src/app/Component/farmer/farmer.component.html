@@ -1,0 +1,293 @@
+<!-- <div class="dashboard-container">
+    <h2>Welcome Farmer</h2>
+    <div class="dashboard-buttons">
+      <button (click)="showSection('home')">Home</button>
+      <button (click)="showSection('crops')">Crops</button>
+      <button (click)="showSection('invoices')">Invoices</button> 
+        <button (click)="showSection('profile')">Profile</button>
+        <button (click)="logout()">Logout</button>  
+    </div>
+   </div>
+<div *ngIf="activeSection === 'profile'">
+    <h2>Farmer Profile</h2>
+     <button (click)="editFarmerDetails()">Edit Profile</button>
+    <table>
+      <tr>
+        <td>ID</td>
+        <td>{{ farmer.farmerId}}</td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>{{ farmer.name }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ farmer.email }}</td>
+      </tr>
+      <tr>
+        <td>Phone Number</td>
+        <td>{{ farmer.phone }}</td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td>{{ farmer.address }}</td>
+      </tr>
+      
+    </table>
+</div>
+
+<div *ngIf="activeSection === 'crops'">
+       <button (click)="addcrops()">Add New Crop</button>
+     
+        
+      
+    <table>
+      <thead>
+        <tr>
+            
+          <th>Crop ID</th>
+          <th>Crop Type ID</th>
+          <th>Crop Name</th>
+          <th>Quantity In Kg</th>
+          <th>Price Per Kg</th>
+          <th>Location</th>
+          <!-- <th>Update</th>
+          <th>Delete</th> -->
+        <!-- </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let crop of crops">
+            
+          <td>{{ crop.CropId}}</td>
+          <td>{{ crop.CropTypeID }}</td>
+          <td>{{ crop.CropName }}</td>
+          <td>{{ crop.Quantity }}</td>
+          <td>{{ crop.Price }}</td>
+          <td>{{ crop.Location }}</td> -->
+          <!-- <td><button (click)="updateCrop()">Edit</button></td>
+          <td><button (click)="deleteCrop(crop.cropId)">Delete</button></td> -->
+        <!-- </tr>
+      </tbody>
+    </table>
+
+</div>
+<div *ngIf="activeSection === 'invoices'">
+  <table>
+    <thead>
+      <tr>
+          <th>Sr.No</th>
+        <th>Invoice ID</th>
+        <th>Farmer ID</th>
+        <th>Dealer ID</th>
+        <th>Crop ID</th>
+        <th>Transaction Amount</th>
+        <th>Date of Transaction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let crop of invoices; let i = index ">
+          <td>{{ i + 1 }}</td>
+        <td>{{ crop.invoiceId}}</td>
+        <td>{{ crop.farmerID }}</td>
+        <td>{{ crop.dealerID }}</td>
+        <td>{{ crop.cropID }}</td>
+        <td>{{ crop.amount }}</td>
+        <td>{{ crop.invoiceDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div> -->
+
+
+  <!DOCTYPE html>
+<html>
+<head>
+    <!-- Link to the Bootstrap CSS here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add this to include Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Add this to include Bootstrap JavaScript (jQuery and Popper.js are also required) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    
+    <div class="container">
+      <div class="dashboard-container">
+        <div class="dropdown">
+          <button class="dropbtn">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </button>
+          <div class="dropdown-content">
+            <button (click)="showSection('home')">Home</button>
+            <button (click)="showSection('crops')">Crops</button>
+            <button (click)="showSection('invoices')">Invoices</button>
+            <button (click)="showSection('profile')">Profile</button>
+          </div>
+        </div>
+    
+        <h2>Farmer Dashboard</h2>
+        <div class="dashboard-buttons">
+            
+            <div class="right-buttons">
+                <button class="btn btn-danger" (click)="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+    <div class="container dashboard-content">
+        <div *ngIf="activeSection === 'profile'">
+            <h2>Farmer Profile</h2>
+            
+            
+              <div class="table-bordered">
+                <table class="table table-success">
+                    <thead class="thead-dark">
+                <tr>
+                    <td>ID</td>
+                    <td>{{ farmer.farmerId }}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ farmer.name }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ farmer.email }}</td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td>{{ farmer.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>{{ farmer.address }}</td>
+                </tr>
+                <tr>
+                  <td>Account Number</td>
+                  <td>{{ farmer.accNum }}</td>
+              </tr>
+              <tr>
+                <td>Ifsc Code</td>
+                <td>{{ farmer.ifsc }}</td>
+            </tr>
+            <tr>
+              <td>Bank Name</td>
+              <td>{{ farmer.bankName }}</td>
+          </tr>
+                    </thead>
+            </table>
+        </div>
+        <button (click)="editFarmerDetails()" class="btn btn-primary">Edit Profile</button>
+        </div>
+
+        <div *ngIf="activeSection === 'crops'">
+            <!-- <button (click)="addCrops()" class="btn btn-success">Add New Crop</button> -->
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Crop ID</th>
+                        <th>Crop Name</th>
+                        <th>Quantity</th>
+                        <th>Price Per Kg</th>
+                        <th>Location</th>
+                        <th>CropType</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let crop of crops">
+                        <td>{{ crop.cropId }}</td>
+                        <td>{{ crop.cropName }}</td>
+                        <td>{{ crop.quantity }}</td>
+                        <td>{{ crop.price }}</td>
+                        <td>{{ crop.location }}</td>
+                        <td>{{ crop.cropTypeID === 1 ? 'Fruit' : crop.cropTypeID === 2 ? 'Vegetable' : 'Unknown' }}</td>
+                        <!-- <td>{{ crop.cropType}}</td> -->
+                        <!-- <td> <button class="btn btn-info" [routerLink]="editCrop(crop.cropId)">Edit</button> -->
+                         <td> <button class="btn btn-info" [routerLink]="['/edit-crop', crop.cropId]">Edit</button> </td>
+
+                        <td><button class="btn btn-danger" (click)="deleteCrop(crop.cropId)">Delete</button> </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-success" (click)="addcrops()">Add New Crop</button>
+        </div>
+
+        <div *ngIf="activeSection === 'invoices'">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Invoice ID</th>
+                        <th>Farmer Name</th>
+                        <th>Dealer Name</th>
+                        <th>Crop Name</th>
+                        <th>Transaction Amount</th>
+                        <th>Date of Transaction</th>
+                        <th>Download Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invoice of invoices; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ invoice.invoiceId }}</td>
+                        <td>{{ invoice.farmerName }}</td>
+                        <td>{{ invoice.dealerName }}</td>
+                        <td>{{ invoice.cropName }}</td>
+                        <td>{{ invoice.amount }}</td>
+                        <td>{{ invoice.date }}</td>
+                        <td>
+                          <button class="btn btn-primary" (click)="downloadPdf(invoice.invoiceId)">Download PDF</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="activeSection === 'home'" class="container mt-4">
+      <h3>Welcome Farmer</h3>
+    
+      <div class="icons-container">
+        <div class="icons">
+          <div class="card" style="width: 20rem;">
+            <img src="../../../assets/images/my2.jpg" class="card-img-top" alt="Crops" style="height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: large; font-weight: bold;">Crops</h5>
+              <p class="card-text">Manage and oversee farmer information and status changes</p>
+            </div>
+          </div>
+    
+          <div class="card" style="width: 20rem;">
+            <img src="../../../assets/images/invoice1.jpg" class="card-img-top" alt="Invoices" style="height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: large; font-weight: bold;">Invoices</h5>
+              <p class="card-text">Generate reports on transactions and crop varieties.</p>
+            </div>
+          </div>
+    
+          <div class="card" style="width: 20rem;">
+            <img src="../../../assets/images/profile.jpg" class="card-img-top" alt="Subscriptions" style="height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: large; font-weight: bold;">Features</h5>
+              <p class="card-text">View statistical information about farmer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- </body>
+</html> -->

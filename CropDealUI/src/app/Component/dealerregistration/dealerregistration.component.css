@@ -1,0 +1,70 @@
+/* Style for the Dealer Registration Form */
+h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  /* Style the error messages in red */
+.error-message {
+  color: #FF0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+body {
+  background-image: url("../../../assets/images/deal2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height:100vh; /* This ensures the background covers the entire viewport height */
+}
+
+  
